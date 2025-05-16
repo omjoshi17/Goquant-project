@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Trade Simulator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Input Parameters</h2>
+            <form method="POST">
+                <label for="exchange">Exchange:</label>
+                <input type="text" id="exchange" name="exchange" required><br>
+
+                <label for="asset">Spot Asset:</label>
+                <input type="text" id="asset" name="asset" required><br>
+
+                <label for="order_type">Order Type:</label>
+                <input type="text" id="order_type" name="order_type" value="market" readonly><br>
+
+                <label for="quantity">Quantity (USD):</label>
+                <input type="number" id="quantity" name="quantity" required><br>
+
+                <label for="volatility">Volatility:</label>
+                <input type="number" id="volatility" name="volatility" step="0.01" required><br>
+
+                <label for="fee_tier">Fee Tier:</label>
+                <input type="text" id="fee_tier" name="fee_tier" required><br>
+
+                <button type="submit">Simulate Trade</button>
+            </form>
+        </div>
+
+        <div class="right-panel">
+            <h2>Processed Output Values</h2>
+            {% if expected_slippage %}
+                <p>Expected Slippage: {{ expected_slippage }}</p>
+                <p>Expected Fees: {{ expected_fees }}</p>
+                <p>Expected Market Impact: {{ expected_market_impact }}</p>
+                <p>Net Cost: {{ net_cost }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
